@@ -1,0 +1,23 @@
+CREATE TABLE product
+(
+id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+nume VARCHAR(100),
+unit VARCHAR(20),
+price_unit DOUBLE,
+quantity INTEGER,
+CONSTRAINT primary_key PRIMARY KEY (id)
+);
+
+INSERT INTO product(nume,unit,price_unit,quantity) 
+VALUES('Prod1','Piece',5,1024);
+
+INSERT INTO product(nume,unit,price_unit,quantity) 
+VALUES('Prod2','Kg',34,125);
+
+INSERT INTO product(nume,unit,price_unit,quantity) 
+VALUES('Prod3','Meter',563,23);
+
+INSERT INTO product(nume,unit,price_unit,quantity) 
+VALUES('Prod4','Liter',3.5,200);
+
+SELECT * FROM product;
