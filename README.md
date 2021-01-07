@@ -15,16 +15,13 @@ Precizari:
 - Focalizati-va intai pe functionalitate si mai apoi pe aspect
 
 Tehnologii:
-Colectii: jpa + glassfish (laborator 5,6)
-Servleti + jsp; Facelets (laborator 7,8,9,10)
-
-Schite:
+JPA, GlassFish, Servlet, JSP
 
 Apasarea butonului ‘New’ ne afiseaza o noua fereastra.
 
-Din ecranul principal se apasa butonul ‘Update’ si ecranul de mai jos este populat automat cu datele
+Din ecranul principal se apasa butonul ‘Edit’ si ecranul de mai jos este populat automat cu datele
 aferente.
 
 Din ecranul principal se apasa butonul ‘Delete’ si ecranul de mai jos este populat automat cu datele
-aferente. Apasarea butonului ‘OK’ sterge intrarea selectata, si se reafiseaza prima pagina. Apasarea
-butonului ‘Cancel’ va determina inchiderea ferestrei de stergere fara niciun efect asupra datelor.
+aferente. Apasarea butonului ‘Yes’ sterge intrarea selectata, si se reafiseaza prima pagina. Apasarea
+butonului ‘No’ va determina inchiderea ferestrei de stergere fara niciun efect asupra datelor.
