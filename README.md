@@ -4,8 +4,7 @@ Realizati o aplicatie java pentru gestiunea produselor intr-un depozit
 Aplicatia va memora numele, unitate masura, cantitate, pret unitar pt produse.
 Aplicatia va permite operatii CRUD (Create-Read-Update-Delete):
 - adaugare elemente noi
-- citire cate un element, citire lista de elemente, cautare/filtrare dupa nume, unitate masura, pret
-unitar
+- citire cate un element, citire lista de elemente, cautare/filtrare dupa nume, unitate masura
 - editare si actualizare date existente
 - stergere date
 - Aplicatia va permite ordonarea dupa nume apoi dupa unitate de masura
