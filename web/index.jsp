@@ -25,10 +25,10 @@
         <div  class="container-fluid">
             <nav class="navbar navbar-light">
                 <p class="navbar-brand">PRODUCT DEPOSIT MANAGEMENT</p>
-                <button><a class="new-btn" href="addproduct.jsp">New</a></button>
                 <form class="form-inline" method="get">
-                    <input class="form-control mr-sm-2" type="search" name="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button><a class="new-btn" href="addproduct.jsp">New</a></button>
+                    <input class="search" type="search" name="search" placeholder="Search" aria-label="Search">
+                    <button class="search-btn" type="submit">Search</button>
                 </form>
             </nav>
         </div>
@@ -58,8 +58,8 @@
                                         <td>${tempProd.unit}</td>
                                         <td>${tempProd.priceUnit}</td>
                                         <td>${tempProd.quantity}</td>
-                                        <td><a class="btn-btn-primary" href="editproduct.jsp?id=${tempProd.id}">Edit</a> 
-                                            <a class="btn-btn-primary" href="deleteproduct.jsp?id=${tempProd.id}">Delete</a></td>
+                                        <td><button><a class="btn-btn-primary" href="editproduct.jsp?id=${tempProd.id}">Edit</a></button> 
+                                            <button><a class="btn-btn-primary" href="deleteproduct.jsp?id=${tempProd.id}">Delete</a></button></td>
                                     </tr>
                                 </c:forEach>
                             </tbody>

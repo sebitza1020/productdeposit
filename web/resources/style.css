@@ -293,11 +293,6 @@ img.image {
     color: black;
 }
 
-.btn-btn-primary {
-    background-color: #888;
-    border-color: #98bf21;
-}
-
 .btn-btn-primary:hover {
     text-decoration: none;
     color: black;
@@ -320,4 +315,14 @@ td {
     border-color: #A7C942;
     background-color: #EAF2D3;
     
+}
+
+.search {
+    position: relative;
+    right: -95px;
+}
+
+.search-btn {
+    position: relative;
+    right: -95px
 }
