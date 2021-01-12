@@ -4,6 +4,8 @@
     Author     : munte
 --%>
 
+<%@page import="com.productdeposit.dao.StockDAOImpl"%>
+<%@page import="com.productdeposit.dao.StockDAO"%>
 <%@page import="com.productdeposit.dao.ConnectionDAO"%>
 <%@page import="com.productdeposit.dao.ProductDAOImpl"%>
 <%@page import="com.productdeposit.dao.ProductDAO"%>
@@ -11,6 +13,7 @@
 <%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix = "c"%>
 <%
     ProductDAO productData = new ProductDAOImpl(ConnectionDAO.getCon());
+    StockDAO stockData = new StockDAOImpl(ConnectionDAO.getCon());
 %>
 
 <%@ include file="WEB-INF/pages/header.jsp" %>

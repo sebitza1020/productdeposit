@@ -5,31 +5,34 @@
  */
 package com.productdeposit.model;
 
+import java.io.Serializable;
+import javax.persistence.*;
+
 /**
  *
  * @author munte
  */
-public class Product {
+@Entity
+@Table(name = "product")
+public class Product implements Serializable {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "nume")
     private String name;
+    @Column(name = "unit")
     private String unit;
-    private float priceUnit;
-    private int quantity;
 
-    public Product(int id, String name, String unit, float priceUnit, int quantity) {
+    public Product(int id, String name, String unit) {
         this.id = id;
         this.name = name;
         this.unit = unit;
-        this.priceUnit = priceUnit;
-        this.quantity = quantity;
     }
 
-    public Product(String name, String unit, float priceUnit, int quantity) {
+    public Product(String name, String unit) {
         this.name = name;
         this.unit = unit;
-        this.priceUnit = priceUnit;
-        this.quantity = quantity;
     }
 
     public Product() {
@@ -60,25 +63,9 @@ public class Product {
         this.unit = unit;
     }
 
-    public float getPriceUnit() {
-        return priceUnit;
-    }
-
-    public void setPriceUnit(float priceUnit) {
-        this.priceUnit = priceUnit;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     @Override
     public String toString() {
         return "Product[" + "id=" + id + ", name=" + name + ", unit=" + unit
-                + ", priceUnit=" + priceUnit + ", quantity=" + quantity + ']';
+                +  ']';
     }
 }

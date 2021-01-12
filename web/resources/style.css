@@ -258,7 +258,6 @@ ul.bottom {
 .about {
     color : #999;
     font-family : Roboto, Helvetica, Arial, sans-serif;
-    text-align : center;
     font-size : 90%;
 }
 
@@ -325,4 +324,9 @@ td {
 .search-btn {
     position: relative;
     right: -95px
+}
+
+.table {
+    display: flex;
+    margin: 0 auto;
 }

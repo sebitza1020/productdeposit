@@ -4,6 +4,9 @@
     Author     : munte
 --%>
 
+<%@page import="com.productdeposit.model.Stock"%>
+<%@page import="com.productdeposit.dao.StockDAOImpl"%>
+<%@page import="com.productdeposit.dao.StockDAO"%>
 <%@page import="com.productdeposit.model.Product"%>
 <%@page import="com.productdeposit.dao.ConnectionDAO"%>
 <%@page import="com.productdeposit.dao.ProductDAOImpl"%>
@@ -14,6 +17,9 @@
     ProductDAO prd = new ProductDAOImpl(ConnectionDAO.getCon());
     Product pr = prd.selectProduct(id);
     request.setAttribute("delete_product", pr);
+    StockDAO std = new StockDAOImpl(ConnectionDAO.getCon());
+    Stock st = std.selectStock(id);
+    request.setAttribute("delete_stock", st);
 %>
 
 <%@ include file="WEB-INF/pages/header.jsp" %>
@@ -51,12 +57,12 @@
                         <div class="form-group">
                             <label>Price per Unit</label>
                             <input type="text" class="form-control" name="price_unit" 
-                                   value="${delete_product.priceUnit}" required readonly>
+                                   value="${delete_stock.priceUnit}" required readonly>
                         </div>
                         <div class="form-group" >
                             <label>Quantity</label>
                             <input type="text" class="form-control" name="quantity"
-                                   value="${delete_product.quantity}" required readonly>
+                                   value="${delete_stock.quantity}" required readonly>
                         </div>
                         <button><a class="cancel-btn" href="index.jsp">No</a></button>
                         <button type="submit" class="btn btn-primary">Yes</button>
