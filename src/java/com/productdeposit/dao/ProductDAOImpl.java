@@ -6,6 +6,7 @@
 package com.productdeposit.dao;
 
 import com.productdeposit.model.Product;
+import com.productdeposit.model.Stock;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -31,16 +32,14 @@ public class ProductDAOImpl implements ProductDAO {
         boolean test = false;
 
         try {
-            String query = "INSERT INTO product (nume,unit,price_unit,quantity) "
-                    + "VALUES (?,?,?,?)";
+            String query = "INSERT INTO product (nume,unit) "
+                    + "VALUES (?,?)";
             PreparedStatement pst = this.con.prepareStatement(query);
             pst.setString(1, product.getName());
             pst.setString(2, product.getUnit());
-            pst.setDouble(3, product.getPriceUnit());
-            pst.setInt(4, product.getQuantity());
             pst.executeUpdate();
             test = true;
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return test;
@@ -49,17 +48,15 @@ public class ProductDAOImpl implements ProductDAO {
     @Override
     public void updateProduct(Product product) throws SQLException {
         try {
-            String query = "UPDATE product SET nume=?, unit=?, price_unit=?, quantity=? "
+            String query = "UPDATE product SET nume=?, unit=? "
                     + "WHERE id=?";
             PreparedStatement pt = this.con.prepareStatement(query);
             pt.setString(1, product.getName());
             pt.setString(2, product.getUnit());
-            pt.setDouble(3, product.getPriceUnit());
-            pt.setInt(4, product.getQuantity());
-            pt.setInt(5, product.getId());
+            pt.setInt(3, product.getId());
             
             pt.executeUpdate();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }
@@ -79,11 +76,9 @@ public class ProductDAOImpl implements ProductDAO {
                 int iid = rs.getInt("id");
                 String name = rs.getString("nume");
                 String unit = rs.getString("unit");
-                float priceUnit = rs.getFloat("price_unit");
-                int quantity = rs.getInt("quantity");
-                pr = new Product(iid, name, unit, priceUnit, quantity);
+                pr = new Product(iid, name, unit);
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return pr;
@@ -111,10 +106,7 @@ public class ProductDAOImpl implements ProductDAO {
                 int id = rs.getInt("id");
                 String name = rs.getString("nume");
                 String unit = rs.getString("unit");
-                float priceUnit = rs.getFloat("price_unit");
-                int quantity = rs.getInt("quantity");
-
-                Product row = new Product(id, name, unit, priceUnit, quantity);
+                Product row = new Product(id, name, unit);
                 products.add(row);
             }
         } catch (SQLException e) {
@@ -130,7 +122,7 @@ public class ProductDAOImpl implements ProductDAO {
             PreparedStatement pt = this.con.prepareStatement(query);
             pt.setInt(1, id);
             pt.execute();
-        } catch (Exception e) {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }   
