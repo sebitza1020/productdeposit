@@ -8,10 +8,7 @@ package com.productdeposit.web;
 import com.productdeposit.dao.ConnectionDAO;
 import com.productdeposit.dao.ProductDAO;
 import com.productdeposit.dao.ProductDAOImpl;
-import com.productdeposit.dao.StockDAO;
-import com.productdeposit.dao.StockDAOImpl;
 import com.productdeposit.model.Product;
-import com.productdeposit.model.Stock;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -47,18 +44,15 @@ public class EditProductServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-            int id = Integer.parseInt(request.getParameter("id"));
+            Integer id = Integer.parseInt(request.getParameter("id"));
             String name = request.getParameter("name");
             String unit = request.getParameter("unit");
-            float priceUnit = Float.parseFloat(request.getParameter("price_unit"));
+            Double priceUnit = Double.parseDouble(request.getParameter("price_unit"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
-            Product product = new Product(id, name, unit);
-            Stock stock = new Stock(id, priceUnit, quantity);
+            Product product = new Product(id, name, unit, priceUnit, quantity);
             try {
                 ProductDAO prdao = new ProductDAOImpl(ConnectionDAO.getCon());
-                StockDAO stdao = new StockDAOImpl(ConnectionDAO.getCon());
                 prdao.updateProduct(product);
-                stdao.updateStock(stock);
                 response.sendRedirect("index.jsp");
             } catch (SQLException e) {
                 e.printStackTrace();

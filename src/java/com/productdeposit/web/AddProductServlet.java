@@ -8,10 +8,7 @@ package com.productdeposit.web;
 import com.productdeposit.dao.ConnectionDAO;
 import com.productdeposit.dao.ProductDAO;
 import com.productdeposit.dao.ProductDAOImpl;
-import com.productdeposit.dao.StockDAO;
-import com.productdeposit.dao.StockDAOImpl;
 import com.productdeposit.model.Product;
-import com.productdeposit.model.Stock;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -48,14 +45,12 @@ public class AddProductServlet extends HttpServlet {
             out.println("<body>");
             String name = request.getParameter("name");
             String unit = request.getParameter("unit");
-            float priceUnit = Float.parseFloat(request.getParameter("price_unit"));
+            Double priceUnit = Double.parseDouble(request.getParameter("price_unit"));
             int quantity = Integer.parseInt(request.getParameter("quantity"));
-            Product product = new Product(name, unit);
-            Stock stock = new Stock(priceUnit, quantity);
+            Product product = new Product(name, unit, priceUnit, quantity);
             try {
                 ProductDAO productDao = new ProductDAOImpl(ConnectionDAO.getCon());
-                StockDAO stockDAO = new StockDAOImpl(ConnectionDAO.getCon());
-                if(productDao.addProduct(product) && stockDAO.addStock(stock)) {
+                if(productDao.addProduct(product)) {
                     response.sendRedirect("index.jsp");
                 } else {
                     out.print("Error! Product couldn't be added due to a error...");

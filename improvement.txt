@@ -8,39 +8,48 @@ CONSTRAINT primary_key PRIMARY KEY (id)
 
 CREATE TABLE stock
 (
-stock_id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+id INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+product_id INTEGER NOT NULL,
 price_unit FLOAT,
 quantity INTEGER,
-CONSTRAINT primary_key1 PRIMARY KEY (stock_id),
-CONSTRAINT foreign_key FOREIGN KEY (stock_id) REFERENCES product(id)
+CONSTRAINT primary_key1 PRIMARY KEY (id),
+CONSTRAINT foreign_key FOREIGN KEY (product_id) REFERENCES product(id)
 );
 
 INSERT INTO product(nume,unit) 
 VALUES('Prod1','Piece');
 
-INSERT INTO stock(price_unit,quantity)
-VALUES(5,1024);
+INSERT INTO stock(product_id, price_unit,quantity)
+select id as product_id, 5 as price_unit, 1024 as quantity
+from product
+where nume='Prod1';
 
 INSERT INTO product(nume,unit) 
 VALUES('Prod2','Kg');
 
-INSERT INTO stock(price_unit,quantity)
-VALUES(34,125);
+INSERT INTO stock(product_id, price_unit,quantity)
+select id as product_id, 34 as price_unit, 125 as quantity
+from product
+where nume='Prod2';
 
 INSERT INTO product(nume,unit) 
 VALUES('Prod3','Meter');
 
-INSERT INTO stock(price_unit,quantity)
-VALUES(563,23);
+INSERT INTO stock(product_id, price_unit,quantity)
+select id as product_id, 563 as price_unit, 23 as quantity
+from product
+where nume='Prod3';
 
 INSERT INTO product(nume,unit) 
 VALUES('Prod4','Liter');
 
-INSERT INTO stock(price_unit,quantity)
-VALUES(3.5,200);
+INSERT INTO stock(product_id, price_unit,quantity)
+select id as product_id, 3.5 as price_unit, 200 as quantity
+from product
+where nume='Prod4';
 
-SELECT product.ID, product.NUME, product.UNIT, stock.PRICE_UNIT, stock.QUANTITY 
-FROM product INNER JOIN stock ON product.id=stock.stock_id ORDER BY nume, unit;
+SELECT product.ID, product.NUME, product.UNIT, max(stock.PRICE_UNIT), sum(stock.QUANTITY)
+FROM product INNER JOIN stock ON product.ID=stock.PRODUCT_ID GROUP BY product.ID, product.NUME, product.UNIT;
 
 DROP TABLE stock;
 
