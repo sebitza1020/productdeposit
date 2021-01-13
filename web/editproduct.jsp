@@ -4,9 +4,6 @@
     Author     : munte
 --%>
 
-<%@page import="com.productdeposit.model.Stock"%>
-<%@page import="com.productdeposit.dao.StockDAOImpl"%>
-<%@page import="com.productdeposit.dao.StockDAO"%>
 <%@page import="com.productdeposit.model.Product"%>
 <%@page import="com.productdeposit.dao.ProductDAO"%>
 <%@page import="com.productdeposit.dao.ConnectionDAO"%>
@@ -17,9 +14,6 @@
     ProductDAO prd = new ProductDAOImpl(ConnectionDAO.getCon());
     Product pr = prd.selectProduct(id);
     request.setAttribute("edit_product", pr);
-    StockDAO std = new StockDAOImpl(ConnectionDAO.getCon());
-    Stock st = std.selectStock(id);
-    request.setAttribute("edit_stock", st);
 %>
 
 <%@ include file="WEB-INF/pages/header.jsp" %>
@@ -47,7 +41,7 @@
                         <div class="form-group">
                             <label>Name</label>
                             <input type="text" class="form-control" name="name" 
-                                   value="${edit_product.name}" required>
+                                   value="${edit_product.nume}" required>
                         </div>
                         <div class="form-group">
                             <label>Measuring Unit</label>
@@ -57,12 +51,12 @@
                         <div class="form-group">
                             <label>Price per Unit</label>
                             <input type="text" class="form-control" name="price_unit" 
-                                   value="${edit_stock.priceUnit}" required>
+                                   value="${edit_product.priceUnit}" required>
                         </div>
                         <div class="form-group" >
                             <label>Quantity</label>
                             <input type="text" class="form-control" name="quantity"
-                                   value="${edit_stock.quantity}" required>
+                                   value="${edit_product.quantity}" required>
                         </div>
                         <button><a class="cancel-btn" href="index.jsp">Cancel</a></button>
                         <button type="submit" class="btn btn-primary">OK</button>

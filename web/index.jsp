@@ -4,9 +4,6 @@
     Author     : munte
 --%>
 
-<%@page import="com.productdeposit.model.Stock"%>
-<%@page import="com.productdeposit.dao.StockDAOImpl"%>
-<%@page import="com.productdeposit.dao.StockDAO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.productdeposit.model.Product"%>
 <%@page import="com.productdeposit.dao.ConnectionDAO"%>
@@ -54,16 +51,13 @@
                                     ProductDAO productData = new ProductDAOImpl(ConnectionDAO.getCon());
                                     List<Product> products = productData.getAllProducts(request.getParameter("search"));
                                     request.setAttribute("PRODUCTS_LIST", products);
-                                    StockDAO stockData = new StockDAOImpl(ConnectionDAO.getCon());
-                                    List<Stock> stocks = stockData.getAllStocks();
-                                    request.setAttribute("STOCK_LIST", stocks);
                                 %>
                                 <c:forEach var="tempProd" items="${PRODUCTS_LIST}" varStatus="status">
                                     <tr>
-                                        <td>${tempProd.name}</td>
+                                        <td>${tempProd.nume}</td>
                                         <td>${tempProd.unit}</td>
-                                        <td>${STOCK_LIST[status.index].priceUnit}</td>
-                                        <td>${STOCK_LIST[status.index].quantity}</td>
+                                        <td>${tempProd.priceUnit}</td>
+                                        <td>${tempProd.quantity}</td>
                                         <td><button><a class="btn-btn-primary" href="editproduct.jsp?id=${tempProd.id}">Edit</a></button> 
                                             <button><a class="btn-btn-primary" href="deleteproduct.jsp?id=${tempProd.id}">Delete</a></button></td>
                                     </tr>

@@ -8,8 +8,6 @@ package com.productdeposit.web;
 import com.productdeposit.dao.ConnectionDAO;
 import com.productdeposit.dao.ProductDAO;
 import com.productdeposit.dao.ProductDAOImpl;
-import com.productdeposit.dao.StockDAO;
-import com.productdeposit.dao.StockDAOImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.SQLException;
@@ -45,11 +43,9 @@ public class DeleteProductServlet extends HttpServlet {
             out.println("</head>");
             out.println("<body>");
             
-            int pid = Integer.parseInt(request.getParameter("id"));
+            Integer pid = Integer.parseInt(request.getParameter("id"));
             try {
                 ProductDAO prd = new ProductDAOImpl(ConnectionDAO.getCon());
-                StockDAO std = new StockDAOImpl(ConnectionDAO.getCon());
-                std.deleteStock(pid);
                 prd.deleteProduct(pid);
                 response.sendRedirect("index.jsp");
             } catch (SQLException e) {

@@ -16,7 +16,7 @@ import java.util.List;
 public interface ProductDAO {
     public boolean addProduct(Product product) throws SQLException;
     public void updateProduct(Product product) throws SQLException;
-    public Product selectProduct(int id);
+    public Product selectProduct(Integer id);
     public List<Product> getAllProducts(String aData);
-    public void deleteProduct(int id) throws SQLException;
+    public void deleteProduct(Integer id) throws SQLException;
 }
